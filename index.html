@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Игра в слова</title>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="style.css">
+		<script type="text/javascript" src="ajax.js"></script>
+	</head>
+	<body>
+		<div name="main" id="main">
+			<form method="post">
+				<div name="InWord" id="InWord">
+					<label>Введите слово: <input type="text" name="PlayerWord" id="PlayerWord"></label>
+					<input type="button" value="Отправить" onclick='ajax()'>
+				</div>
+				<textarea name="history" id="history" cols="60" rows="30"></textarea>
+			</form>
+		</div>
+	</body>
+</html>
