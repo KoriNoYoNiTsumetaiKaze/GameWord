@@ -3,14 +3,26 @@ header("Content-type: text/plain; charset=utf-8");
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Cache-Control: post-check=0, pre-check=0", false);
 
-session_start();
+$playerWord	= $_POST['PlayerWord'];
 
-$PlayerWord	= $_POST['PlayerWord'];
+include_once "WordVerification.php";
+
+$errtxt='';
+if (!WV_Contor($playerWord,$errtxt))
+	{
+		echo $errtxt;
+		die();
+	}
+
+echo $playerWord;
+
+/*session_start();
+
 $PlayerWord	= strtolower($PlayerWord);
 
 function WordVerification($PlayerWord)
 {
-	$AllowedCharacters	= "qwertyuiopasdfghjklzxcvbnmйцукенгшщзхъфывапролджэячсмитьбю";
+	$AllowedCharacters	= "йцукенгшщзхъфывапролджэячсмитьбю";
 	$AllowedPlayerWord	= "";
 	for ($i=0;$i<strlen($PlayerWord);$i++)
 	{
@@ -24,7 +36,7 @@ function WordVerification($PlayerWord)
 	
 	if (!$make) echo "Слово слишком короткое!";
 	
-	$vowels ="qeyuioajйуеъыаоэяиью";
+	$vowels ="йуеъыаоэяиью";
 	$j	= 0;
 	for ($i=0;$i<strlen($PlayerWord);$i++)
 	{
@@ -35,7 +47,7 @@ function WordVerification($PlayerWord)
 	
 	if (!$make) echo "Слово из одних гласных? Что это за язык? Я такого не знаю!";
 	
-	$vowels ="wrtpsdfghklzxcvbnmцкнгшщзхфвпрлджчсмтб";
+	$vowels ="цкнгшщзхфвпрлджчсмтб";
 	$j	= 0;
 	for ($i=0;$i<strlen($PlayerWord);$i++)
 	{
@@ -46,12 +58,12 @@ function WordVerification($PlayerWord)
 	
 	if (!$make) echo "Слово из одних согласных? Что это за язык? Я такого не знаю!";
 	
-	$pattern = '[qeyuioajйуеъыаоэяиью]{3}';
+	$pattern = '[йуеъыаоэяиью]{3}';
 	if (preg_match($pattern, $PlayerWord)) $make	= false;
 	
 	if (!$make) echo "Три гласных подряд? Что это за язык? Я такого не знаю!";
 	
-	$pattern = '[wrtpsdfghklzxcvbnmцкнгшщзхфвпрлджчсмтб]{3}';
+	$pattern = '[цкнгшщзхфвпрлджчсмтб]{3}';
 	if (preg_match($pattern, $PlayerWord)) $make	= false;
 	
 	if (!$make) echo "Три согласных подряд? Что это за язык? Я такого не знаю!";	
@@ -110,5 +122,5 @@ function CompWord($make=false)
 
 $make	= WordVerification($PlayerWord);
 CompWord($make);
-
+*/
 ?>
